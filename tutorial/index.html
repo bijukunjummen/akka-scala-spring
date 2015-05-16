@@ -7,36 +7,34 @@
   <h2>Introduction</h2>
 
   <p>This tutorial aims to show you how to inject resources into Akka actors
-    using <a href="http://blog.springsource.org/2012/12/10/introducing-spring-scala">Spring-Scala</a> . You will be guided through the different parts used to
-    integrate Akka with  Spring-Scala and also create a test wrapper for a service
+    using Spring Framework . You will be guided through the different parts used to
+    integrate Akka with  Spring and also create a test wrapper for a service
     and rewire the service used during testing without any code changes needed
     to the actor or the application classes.
   </p>
 
   <h2>Application Overview</h2>
 
-  <p>The application basically consist of a single actor defined in the
-    <a href="#code/app/sample/CountingActor.scala" class="shortcut">
-    app/sample/CountingActor.scala</a>
-    file. This actor uses a service defined in the <a href="#code/app/sample/CountingService.scala"
-    class="shortcut"> app/sample/CountingService.scala</a> file to increment a
-    value. The <code>CountingService</code> is wired into the Actor via  Spring-Scala.
+  <p>The application basically consist of two actors defined in the
+    <a href="#src/main/scala/sample/actor/CountingActor.scala" class="shortcut">
+    src/main/scala/sample/actor/CountingActor.scala</a> and <a href="#src/main/scala/sample/actor/CountingCoordinatingActor.scala" class="shortcut">
+    src/main/scala/sample/actor/CountingCoordinatingActor.scala</a>
+    file. This CountingActor actor uses a service defined in the <a href="#src/main/scala/sample/service/CountingService.scala"
+    class="shortcut"> CountingService.scala</a> file to increment a
+    value. The <code>CountingService</code> is wired into the Actor via  Spring. 
   </p>
 
   <p>To drive the actor, there is a application defined in the 
-    <a href="#code/app/sample/Main.scala" class="shortcut">
-    app/sample/Main.scala</a> file in the <code>main</code> method, that does the
+    <a href="#src/main/scala/sample/Main.scala" class="shortcut">
+    Main.scala</a> file in the <code>main</code> method, that does the
     following:
     <ul>
       <li>Initializes Spring</li>
       <li>Creates an actor system</li>
-      <li>Creates a <code>CountingActor</code></li>
       <li>Sends a couple of messages to the actor so that it uses the
         <code>CountingService</code></li>
     </ul>
   </p>
-  <h2>Note</h2>
-  <p> This template is inspired from the equivalent <a href="http://typesafe.com/activator/template/akka-java-spring"><strong>JAVA</strong></a> template </p>
 </div>
 <div>
   <h2>Running the Application</h2>
@@ -188,29 +186,6 @@
   <p> Check that the tests are still green on the
     <a href="#test" class="shortcut">Test</a> tab.
   </p>
-</div>
-<div>
-  <h2>Conclusions</h2>
-
-  <p>You now have a working sample that uses spring to inject a service or a
-    test service into an actor. Feel free to experiment and change the actor
-    <a href="#code/app/sample/CountingActor.scala" class="shortcut">
-    CountingActor.scala</a>, service
-    <a href="#code/app/sample/CountingService.scala" class="shortcut">
-    CountingService.scala</a>, test service
-    <a href="#code/test/sample/TestCountingService.scala" class="shortcut">
-    TestCountingService.scala</a> and test
-    <a href="#code/test/sample/SpringTest.scala" class="shortcut">
-    SpringTest.scala</a>.
-  </p>
-
-  <p>The Akka extension <a href="#code/app/sample/SpringExtension.scala" class="shortcut">
-    SpringExtension.scala</a>, the actor producer <a
-    href="#code/app/sample/SpringActorProducer.scala" class="shortcut">
-    SpringActorProducer.scala</a> and the application configuration
-    <a href="#code/app/sample/AppConfiguration.scala" class="shortcut">
-    AppConfiguration.scala</a> can be reused as the basis for your own
-    Spring-Scala application.</p>
 </div>
 </body>
 </html>
